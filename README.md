@@ -2,18 +2,18 @@ We provide a code example based on Autogluon.
 
 ## Installation
 Installation follows the requirement for Autogluon.
-
+```
 ./full_install.sh
-
+```
 ## Example
 
 We provide example on Petfinder. 
-
+```
 python petfinder.py
-
+```
 For turn on/off augmentation network and other configuration, please edit:
-text/src/autogluon/text/automm/configs/model fusion_mlp_image_text_tabular.yaml
 
+text/src/autogluon/text/automm/configs/model fusion_mlp_image_text_tabular.yaml
 text/src/autogluon/text/automm/configs/optimization/adamw.yaml
 
 ## Citing LeMDA
