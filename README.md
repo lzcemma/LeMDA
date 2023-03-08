@@ -8,6 +8,11 @@ Installation follows the requirement for Autogluon.
 ## Example
 
 We provide example on Petfinder. 
+
+Data can be downloaded from:
+
+https://drive.google.com/file/d/1AYDcrtfxlcIyvy9GzOripSR0QhItFTDG/view?usp=share_link
+
 ```
 python petfinder.py
 ```
