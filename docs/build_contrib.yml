@@ -1,0 +1,7 @@
+name: autogluon_contrib
+dependencies:
+- python=3.9
+- pip
+- pip:
+  - -r requirements_doc.txt
+  - git+https://github.com/zhanghang1989/d2l-book

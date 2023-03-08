@@ -1,0 +1,12 @@
+setup.py
+../LICENSE
+../NOTICE
+src/autogluon/__init__.py
+src/autogluon/version.py
+src/autogluon.egg-info/PKG-INFO
+src/autogluon.egg-info/SOURCES.txt
+src/autogluon.egg-info/dependency_links.txt
+src/autogluon.egg-info/namespace_packages.txt
+src/autogluon.egg-info/requires.txt
+src/autogluon.egg-info/top_level.txt
+src/autogluon.egg-info/zip-safe

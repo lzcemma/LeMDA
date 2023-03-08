@@ -1,0 +1,196 @@
+model:
+  names:
+  - numerical_mlp
+  - hf_text
+  - timm_image
+  - fusion_mlp
+  categorical_transformer:
+    out_features: 192
+    d_token: 192
+    num_trans_blocks: 0
+    num_attn_heads: 8
+    residual_dropout: 0.0
+    attention_dropout: 0.2
+    ffn_dropout: 0.1
+    normalization: layer_norm
+    ffn_activation: reglu
+    head_activation: relu
+    data_types:
+    - categorical
+  numerical_mlp:
+    hidden_size: 128
+    activation: leaky_relu
+    num_layers: 1
+    drop_rate: 0.1
+    normalization: layer_norm
+    data_types:
+    - numerical
+    merge: concat
+  numerical_transformer:
+    out_features: 192
+    d_token: 192
+    num_trans_blocks: 0
+    num_attn_heads: 8
+    residual_dropout: 0.0
+    attention_dropout: 0.2
+    ffn_dropout: 0.1
+    normalization: layer_norm
+    ffn_activation: reglu
+    head_activation: relu
+    data_types:
+    - numerical
+    embedding_arch:
+    - linear
+    - relu
+    merge: concat
+  hf_text:
+    checkpoint_name: google/electra-base-discriminator
+    data_types:
+    - text
+    tokenizer_name: hf_auto
+    max_text_len: 512
+    insert_sep: true
+    text_segment_num: 2
+    stochastic_chunk: false
+    text_aug_detect_length: 10
+    text_trivial_aug_maxscale: 0.0
+    text_train_augment_types: null
+  timm_image:
+    checkpoint_name: swin_base_patch4_window7_224
+    mix_choice: all_logits
+    data_types:
+    - image
+    train_transform_types:
+    - resize_shorter_side
+    - center_crop
+    val_transform_types:
+    - resize_shorter_side
+    - center_crop
+    image_norm: imagenet
+    image_size: 224
+    max_img_num_per_col: 2
+  clip:
+    checkpoint_name: openai/clip-vit-base-patch32
+    data_types:
+    - image
+    - text
+    train_transform_types:
+    - resize_shorter_side
+    - center_crop
+    val_transform_types:
+    - resize_shorter_side
+    - center_crop
+    image_norm: clip
+    image_size: 224
+    max_img_num_per_col: 2
+    tokenizer_name: clip
+    max_text_len: 77
+    insert_sep: false
+    text_segment_num: 1
+    stochastic_chunk: false
+    text_aug_detect_length: 10
+    text_trivial_aug_maxscale: 0.0
+    text_train_augment_types: null
+  fusion_mlp:
+    weight: 0.1
+    adapt_in_features: max
+    hidden_sizes:
+    - 128
+    activation: leaky_relu
+    drop_rate: 0.1
+    normalization: layer_norm
+    data_types: null
+    augmenter:
+      turn_on: true
+      arch: mlp_vae
+      z_dim: 8
+      n_layer: 4
+      n_head: 8
+      tran_hidden: 2048
+      kl_loss_weight: 0.1
+      regularizer_loss_weight: 0.1
+      adv_weight: 0.0001
+      consist_reg: true
+      consist_loss_weight: 0.01
+      consist_t: 0.5
+  fusion_transformer:
+    hidden_size: 192
+    n_blocks: 3
+    attention_n_heads: 8
+    adapt_in_features: max
+    attention_dropout: 0.2
+    residual_dropout: 0.0
+    ffn_dropout: 0.1
+    ffn_d_hidden: 192
+    normalization: layer_norm
+    ffn_activation: geglu
+    head_activation: relu
+    data_types: null
+data:
+  image:
+    missing_value_strategy: skip
+  text: null
+  categorical:
+    minimum_cat_count: 100
+    maximum_num_cat: 20
+    convert_to_text: true
+  numerical:
+    convert_to_text: false
+    scaler_with_mean: true
+    scaler_with_std: true
+  label:
+    numerical_label_preprocessing: standardscaler
+  pos_label: null
+  mixup:
+    turn_on: false
+    mixup_alpha: 0.8
+    cutmix_alpha: 1.0
+    cutmix_minmax: null
+    mixup_prob: 1.0
+    mixup_switch_prob: 0.5
+    mixup_mode: batch
+    mixup_off_epoch: 5
+    label_smoothing: 0.1
+optimization:
+  optim_type: adamw
+  learning_rate: 0.0001
+  weight_decay: 0.001
+  lr_choice: layerwise_decay
+  lr_decay: 0.8
+  lr_schedule: cosine_decay
+  max_epochs: 10
+  max_steps: -1
+  warmup_steps: 0.1
+  end_lr: 0
+  lr_mult: 1
+  patience: 10
+  val_check_interval: 0.5
+  top_k: 3
+  top_k_average_method: greedy_soup
+  efficient_finetune: null
+  lora:
+    r: 8
+    alpha: 8
+    filter:
+    - query
+    - value
+  loss_function: auto
+  aug_optimizer: true
+  aug_turn_on: true
+  aug_learning_rate: 0.0001
+  aug_optim_type: adam
+  aug_weight_decay: 1.0e-05
+env:
+  num_gpus: -1
+  num_nodes: 1
+  batch_size: 128
+  per_gpu_batch_size: 8
+  eval_batch_size_ratio: 4
+  per_gpu_batch_size_evaluation: null
+  precision: 32
+  num_workers: 2
+  num_workers_evaluation: 2
+  fast_dev_run: false
+  deterministic: false
+  auto_select_gpus: true
+  strategy: ddp_spawn

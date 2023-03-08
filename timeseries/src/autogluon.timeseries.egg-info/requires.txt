@@ -1,0 +1,13 @@
+numpy<1.23,>=1.21
+scipy<1.8.0,>=1.5.4
+pandas!=1.4.0,<1.5,>=1.2.5
+psutil<5.9,>=5.7.3
+gluonts>=0.8.0
+autogluon.core==0.4.3b20230307
+autogluon.common==0.4.3b20230307
+
+[tests]
+pytest
+flake8
+flaky
+pytest-timeout

@@ -1,0 +1,6 @@
+numpy<1.23,>=1.21
+pandas!=1.4.0,<1.5,>=1.2.5
+boto3
+
+[tests]
+pytest

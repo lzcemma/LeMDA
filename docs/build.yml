@@ -1,0 +1,7 @@
+name: autogluon_py3
+dependencies:
+- python=3.9
+- pip
+- pip:
+  - flake8
+  - black>=22.3
