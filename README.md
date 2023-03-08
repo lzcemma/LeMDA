@@ -12,8 +12,9 @@ We provide example on Petfinder.
 python petfinder.py
 
 For turn on/off augmentation network and other configuration, please edit:
-autogluon_lemda/text/src/autogluon/text/automm/configs/model/fusion_mlp_image_text_tabular.yaml
-autogluon_lemda/text/src/autogluon/text/automm/configs/optimization/adamw.yaml
+text/src/autogluon/text/automm/configs/model fusion_mlp_image_text_tabular.yaml
+
+text/src/autogluon/text/automm/configs/optimization/adamw.yaml
 
 ## Citing LeMDA
 BibTeX entry:
