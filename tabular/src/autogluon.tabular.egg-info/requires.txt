@@ -4,14 +4,14 @@ pandas!=1.4.0,<1.5,>=1.2.5
 scikit-learn<1.1,>=1.0.0
 psutil<6,>=5.7.3
 networkx<3.0,>=2.3
-autogluon.core==0.4.3b20230307
-autogluon.features==0.4.3b20230307
+autogluon.core==0.4.3b20230308
+autogluon.features==0.4.3b20230308
 
 [all]
-lightgbm<3.4,>=3.3
 catboost<1.1,>=1.0
-xgboost<1.5,>=1.4
 fastai<2.6,>=2.3.1
+lightgbm<3.4,>=3.3
+xgboost<1.5,>=1.4
 torch<1.11,>=1.0
 
 [catboost]

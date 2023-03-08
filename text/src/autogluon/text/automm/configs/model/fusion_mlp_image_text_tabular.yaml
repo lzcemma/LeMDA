@@ -53,7 +53,7 @@ model:
       - 'relu'
     merge: "concat"
   hf_text:
-    checkpoint_name: "google/electra-base-discriminator"
+    checkpoint_name: "google/electra-small-discriminator"
     data_types:
       - "text"
     tokenizer_name: "hf_auto"
@@ -69,20 +69,19 @@ model:
       # - "syn_replacement(0.05)"  # less than 0.1 based on eda paper
       # - "insert_punc(0.05)"
   timm_image:
-    checkpoint_name: "swin_base_patch4_window7_224"
+    checkpoint_name:  "convnext_base_in22ft1k"  #"swin_base_patch4_window7_224"
     mix_choice: "all_logits"
     data_types:
       - "image"
     train_transform_types:
       - "resize_shorter_side"
       - "center_crop"
-      # - "trivial_augment"
     val_transform_types:
       - "resize_shorter_side"
       - "center_crop"
     image_norm: "imagenet"
     image_size: 224
-    max_img_num_per_col: 2
+    max_img_num_per_col: 1
   clip:
     checkpoint_name: "openai/clip-vit-base-patch32"
     data_types:
@@ -91,7 +90,6 @@ model:
     train_transform_types:
       - "resize_shorter_side"
       - "center_crop"
-      # - "trivial_augment"
     val_transform_types:
       - "resize_shorter_side"
       - "center_crop"

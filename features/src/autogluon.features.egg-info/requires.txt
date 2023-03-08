@@ -2,4 +2,4 @@ numpy<1.23,>=1.21
 pandas!=1.4.0,<1.5,>=1.2.5
 scikit-learn<1.1,>=1.0.0
 psutil<6,>=5.7.3
-autogluon.common==0.4.3b20230307
+autogluon.common==0.4.3b20230308

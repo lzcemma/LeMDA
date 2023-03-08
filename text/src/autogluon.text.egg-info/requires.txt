@@ -18,9 +18,9 @@ nptyping<1.5.0,>=1.4.4
 omegaconf<2.2.0,>=2.1.1
 sentencepiece<0.2.0,>=0.1.95
 protobuf<=3.18.1
-autogluon.core==0.4.3b20230307
-autogluon.features==0.4.3b20230307
-autogluon.common==0.4.3b20230307
+autogluon.core==0.4.3b20230308
+autogluon.features==0.4.3b20230308
+autogluon.common==0.4.3b20230308
 autogluon-contrib-nlp==0.0.1b20220208
 pytorch-metric-learning<1.4.0,>=1.3.0
 nlpaug<2.0.0,>=1.1.10

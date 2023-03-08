@@ -157,7 +157,6 @@ class LitModule(pl.LightningModule):
                             input=per_output[LOGITS].squeeze(dim=1),
                             target=label.tile((2,)),
                         )
-                        * self.model.aug_config.target_loss
                     )
                     self.log("loss/target", loss, prog_bar=True)
 
